@@ -38,6 +38,9 @@ public class HashB {
     // Buckets for uniformity test (0...255)
     int[] buckets = new int[256];
 
+    // Track how many lines we hashed
+    int totalLines = 0;
+
     // Open a text file for reading (UTF-8)
     try (BufferedReader reader = 
               Files.newBufferedReader(Path.of(filename), StandardCharsets.UTF_8)) {
@@ -52,6 +55,9 @@ public class HashB {
 
         // Count how often each hash value occurs
         buckets[hash]++;
+
+        // Increase total line counter
+        totalLines++;
         
         System.out.printf("%6d hash=%3d line=%s%n", lineNumber, hash, line);
         lineNumber++;
